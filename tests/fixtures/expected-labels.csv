@@ -1,0 +1,6 @@
+id,gender,score,city,comment,essay,dob,ts,dur,household_income_band,mr_a,mr_b,mc_1,mc_2,postcode
+1,Male,3.14159,London,Unicode row,ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMN,1980-05-17,2021-03-04 05:06:07,1:02:03,2,Yes,No,Red,Green,SW1A 1AA
+2,Female,,New York,"say ""hi"", ok",short essay,1899-01-01,2000-01-01 12:00:00,0:00:30,,No,Yes,Green,Blue,
+3,,,,,,,,,151,,Yes,Blue,,
+1000000,,-0.5,  x,"line1
+line2",éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé,2024-02-29,1970-01-01 00:00:00,100:00:00,-99,Yes,Yes,Red,Red,EC1A 1BB

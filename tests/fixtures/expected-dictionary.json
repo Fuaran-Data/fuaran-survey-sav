@@ -1,0 +1,206 @@
+{
+  "cases": 4,
+  "weight": "score",
+  "productName": "@(#) SPSS DATA FILE fixture",
+  "fileLabel": "fixture",
+  "variables": [
+    "id",
+    "gender",
+    "score",
+    "city",
+    "comment",
+    "essay",
+    "dob",
+    "ts",
+    "dur",
+    "household_income_band",
+    "mr_a",
+    "mr_b",
+    "mc_1",
+    "mc_2",
+    "postcode"
+  ],
+  "longNames": {
+    "HOUSEHOL": "household_income_band"
+  },
+  "veryLongStrings": {
+    "essay": 300
+  },
+  "documents": [
+    "Fixture document line one",
+    "Second line, with a comma"
+  ],
+  "fileAttributes": {
+    "source": [
+      "fixture generator"
+    ],
+    "tags": [
+      "a",
+      "b"
+    ]
+  },
+  "variableAttributes": {
+    "score": {
+      "note": [
+        "free text"
+      ]
+    }
+  },
+  "roles": {
+    "id": "Input",
+    "score": "Target",
+    "dur": "NoRole"
+  },
+  "variableSets": [
+    {
+      "name": "demographics",
+      "variables": [
+        "gender",
+        "household_income_band"
+      ]
+    }
+  ],
+  "mrSets": [
+    {
+      "name": "$likes",
+      "kind": "D",
+      "countedValue": "1",
+      "labelSource": "explicit",
+      "label": "Things liked",
+      "extended": false,
+      "variables": [
+        "mr_a",
+        "mr_b"
+      ]
+    },
+    {
+      "name": "$colours",
+      "kind": "C",
+      "label": "Colours chosen",
+      "extended": false,
+      "variables": [
+        "mc_1",
+        "mc_2"
+      ]
+    },
+    {
+      "name": "$likes_e",
+      "kind": "D",
+      "countedValue": "1",
+      "labelSource": "firstVariable",
+      "label": "Likes A",
+      "extended": true,
+      "variables": [
+        "mr_a",
+        "mr_b"
+      ]
+    }
+  ],
+  "display": {
+    "id": {
+      "measure": "Scale",
+      "width": 8,
+      "alignment": "AlignRight"
+    },
+    "gender": {
+      "measure": "Nominal",
+      "width": 5,
+      "alignment": "AlignRight"
+    },
+    "score": {
+      "measure": "Scale",
+      "width": 10,
+      "alignment": "AlignRight"
+    },
+    "city": {
+      "measure": "Nominal",
+      "width": 8,
+      "alignment": "AlignLeft"
+    },
+    "comment": {
+      "measure": "Nominal",
+      "width": 20,
+      "alignment": "AlignLeft"
+    },
+    "essay": {
+      "measure": "Nominal",
+      "width": 40,
+      "alignment": "AlignLeft"
+    },
+    "dob": {
+      "measure": "Scale",
+      "width": 11,
+      "alignment": "AlignRight"
+    },
+    "ts": {
+      "measure": "Scale",
+      "width": 20,
+      "alignment": "AlignRight"
+    },
+    "dur": {
+      "measure": "Scale",
+      "width": 8,
+      "alignment": "AlignRight"
+    },
+    "household_income_band": {
+      "measure": "Ordinal",
+      "width": 6,
+      "alignment": "AlignCentre"
+    },
+    "mr_a": {
+      "measure": "Nominal",
+      "width": 4,
+      "alignment": "AlignRight"
+    },
+    "mr_b": {
+      "measure": "Nominal",
+      "width": 4,
+      "alignment": "AlignRight"
+    },
+    "mc_1": {
+      "measure": "Nominal",
+      "width": 4,
+      "alignment": "AlignRight"
+    },
+    "mc_2": {
+      "measure": "Nominal",
+      "width": 4,
+      "alignment": "AlignRight"
+    },
+    "postcode": {
+      "measure": "Nominal",
+      "width": 10,
+      "alignment": "AlignLeft"
+    }
+  },
+  "longStringMissing": {
+    "postcode": [
+      "UNKNOWN"
+    ]
+  },
+  "longStringLabels": {
+    "comment": {
+      "café ünïcödé": "Unicode row"
+    }
+  },
+  "sharedLabelSets": {
+    "mr_a": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "mr_b": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "mc_1": {
+      "1": "Red",
+      "2": "Green",
+      "3": "Blue"
+    },
+    "mc_2": {
+      "1": "Red",
+      "2": "Green",
+      "3": "Blue"
+    }
+  }
+}
