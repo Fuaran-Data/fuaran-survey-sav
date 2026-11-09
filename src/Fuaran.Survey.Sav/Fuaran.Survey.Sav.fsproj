@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <IsPackable>true</IsPackable>
+    <PackageId>Fuaran.Survey.Sav</PackageId>
+    <Description>Fuaran.Survey.Sav — a reader for agency survey deliverables in SPSS system-file format (.sav and zlib .zsav, either byte order, all three compression modes). Reads the dictionary losslessly including every extension record (multiple response sets, attributes, roles, display parameters, documents, long string labels and missing values), streams cases in one pass, and writes a dependency-free columnar store for analysis. FSharp.Core only.</Description>
+    <PackageTags>spss;sav;zsav;survey;reader;columnar;fsharp</PackageTags>
+    <!-- An incomplete match is not a style note: the missing case throws at runtime, and the
+         record-type and storage enumerations are the whole point of a closed algebra. -->
+    <WarningsAsErrors>FS0025;$(WarningsAsErrors)</WarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Format.fs" />
+    <Compile Include="Binary.fs" />
+    <Compile Include="Records.fs" />
+    <Compile Include="Dictionary.fs" />
+    <Compile Include="Cases.fs" />
+    <Compile Include="Values.fs" />
+    <Compile Include="Columnar.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FSharp.Core" />
+  </ItemGroup>
+</Project>
