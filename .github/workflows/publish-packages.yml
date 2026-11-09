@@ -1,0 +1,87 @@
+name: Publish packages
+
+# Pushes Fuaran.Survey.Sav to nuget.org — the public, no-auth-restore distribution channel. Triggered
+# by a tag push matching `v*` (the "ship this release" gesture) or by workflow_dispatch (the
+# rerun-against-an-existing-tag escape hatch). The version baked into the pack is the <Version>
+# property in Directory.Build.props at the tagged commit; a change to the public surface advances it
+# in the same commit, so a tag never has to decide anything.
+#
+# NOTE: a push to a branch reaches nothing here. Publication is a deliberate act — the tag — and
+# never a side effect of landing work.
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  # `id-token: write` lets the job request the GitHub OIDC token that nuget.org's Trusted
+  # Publishing exchange turns into a short-lived API key.
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      # The gate first: a tag that does not pass format, build and the suite publishes nothing.
+      - name: Gate (format, build, tests)
+        shell: pwsh
+        run: ./run.ps1
+
+      # Packed into a repo-local directory rather than any folder feed, so the push step below
+      # publishes THIS repository's output and nothing else.
+      - name: Pack
+        run: >
+          dotnet pack src/Fuaran.Survey.Sav/Fuaran.Survey.Sav.fsproj
+          -c Release -o "${{ github.workspace }}/artifacts" --nologo
+
+      # Auth is Trusted Publishing (OIDC): a policy on nuget.org (repository owner / repository /
+      # this workflow's file name) exchanges the job's OIDC token for a 1-hour API key — no
+      # long-lived secret to rotate. `user` is the nuget.org profile the policy belongs to. The
+      # login step sits immediately before the push so the temporary key cannot expire mid-run.
+      - name: NuGet login (OIDC → temporary API key)
+        uses: NuGet/login@v1
+        id: nuget-login
+        with:
+          user: ajwillshire # the policy owner (a nuget.org profile name is public, not a secret)
+
+      - name: Push to nuget.org
+        run: |
+          # nullglob so an empty directory yields an empty list rather than the literal pattern,
+          # and each package is pushed individually — `dotnet nuget push` takes a single path.
+          shopt -s nullglob
+          pkgs=("$GITHUB_WORKSPACE"/artifacts/*.nupkg)
+          if [ ${#pkgs[@]} -eq 0 ]; then
+            echo "No .nupkg files found in artifacts/ — Pack produced nothing." >&2
+            exit 1
+          fi
+          # Defence in depth behind the dedicated output directory: this repository packs exactly
+          # one id. Anything else reaching this loop means the output directory was re-pointed
+          # somewhere shared, and the right answer is to refuse rather than to publish it.
+          # --skip-duplicate would not save us: an unexpected id does not exist on nuget.org, so
+          # it would be CREATED, not skipped.
+          for pkg in "${pkgs[@]}"; do
+            case "$(basename "$pkg")" in
+              Fuaran.Survey.Sav.*) ;;
+              *)
+                echo "refusing to push unexpected package id: $(basename "$pkg")" >&2
+                exit 1
+                ;;
+            esac
+          done
+          for pkg in "${pkgs[@]}"; do
+            dotnet nuget push "$pkg" \
+              --source https://api.nuget.org/v3/index.json \
+              --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }} \
+              --skip-duplicate
+          done

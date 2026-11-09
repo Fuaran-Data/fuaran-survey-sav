@@ -103,6 +103,11 @@ The writer makes one typing pass over the file, then writes columns in batches o
 pass per batch, so peak memory is the per-column statistics, the string tables and one batch of
 buffers, not the data.
 
+## Publishing
+
+A `v*` tag publishes `Fuaran.Survey.Sav` to nuget.org through Trusted Publishing (see
+[`DECISIONS.md`](DECISIONS.md) D8). Nothing else publishes; a branch push runs the gate only.
+
 ## Licence
 
 Apache-2.0; see [LICENSE](LICENSE) and [NOTICE](NOTICE).

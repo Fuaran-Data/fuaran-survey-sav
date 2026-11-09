@@ -1,5 +1,16 @@
 # Decisions
 
+## 2026-11-09 — D8: publication is a tag, under Trusted Publishing
+
+A `v*` tag push runs `.github/workflows/publish-packages.yml`: the gate, then `dotnet pack` of the one
+project into a repository-local directory, then a push to nuget.org under Trusted Publishing (OIDC) —
+the job's token is exchanged for a one-hour API key by a policy registered on nuget.org naming this
+repository and this workflow file, so no long-lived secret exists anywhere. A branch push reaches nothing.
+The package id is guarded in the workflow: anything but `Fuaran.Survey.Sav.*` refuses the whole push.
+The version is `<Version>` in `Directory.Build.props` at the tagged commit; a change to the public surface
+advances it in the same commit. Registering the nuget.org policy (owner, repository, workflow file) is the
+one per-repository act and is done once, before the first tag.
+
 Design decisions that shaped `Fuaran.Survey.Sav`, newest first, with the reasoning that would have
 to change for them to be revisited.
 
