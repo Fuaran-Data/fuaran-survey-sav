@@ -20,3 +20,9 @@
 *.nupkg binary
 *.zip   binary
 *.gz    binary
+
+# Test fixtures are held byte-for-byte: SPSS files are binary, and the expected CSVs keep their
+# CR LF line ends (RFC 4180) regardless of the checkout platform.
+*.sav   binary
+*.zsav  binary
+tests/fixtures/expected*.csv -text
