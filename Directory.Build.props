@@ -1,0 +1,19 @@
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarnOn>3390;$(WarnOn)</WarnOn>
+    <!-- 0.1.0: the first cut of the re-homed reader (DECISIONS.md D1) and the columnar store
+         (D2). 0.x posture: the public surface may still move, and a change to it advances this
+         number in the same commit. -->
+    <Version>0.1.0</Version>
+    <Authors>Andrew J. Willshire</Authors>
+    <Company>Diametrical Ltd</Company>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <Copyright>Copyright 2026 Diametrical Ltd</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/Fuaran-Data/fuaran-survey-sav</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Fuaran-Data/fuaran-survey-sav</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,8 @@
+<Project>
+  <ItemGroup>
+    <!-- Fuaran.Survey.Sav is FSharp.Core-only at runtime; Expecto is test-only. The reader
+         carries no NuGet dependency so that a consumer pays nothing for it beyond FSharp.Core. -->
+    <PackageVersion Include="FSharp.Core" Version="10.1.300" />
+    <PackageVersion Include="Expecto" Version="9.0.4" />
+  </ItemGroup>
+</Project>

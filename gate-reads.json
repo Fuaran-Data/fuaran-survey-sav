@@ -1,0 +1,17 @@
+{
+  "kind": "gateReads",
+  "_": "What this repository's gate reads beyond the code-shaped default (sources, tests, build and project files, the gate scripts): the committed SPSS fixtures and their expected renderings under tests/fixtures, which the Expecto suite opens; the prose files are not read by any test.",
+  "reads": [
+    "tests/fixtures/**"
+  ],
+  "notRead": [
+    { "path": "README.md", "reason": "prose" },
+    { "path": "DECISIONS.md", "reason": "prose" },
+    { "path": "CONTRIBUTING.md", "reason": "prose" },
+    { "path": "docs/**", "reason": "prose" }
+  ],
+  "builds": [
+    "Fuaran.Survey.Sav.slnx"
+  ],
+  "notBuilt": []
+}
