@@ -1,5 +1,6 @@
 {
   "kind": "gateReads",
+  "landingAnnouncements": false,
   "_": "What this repository's gate reads beyond the code-shaped default (sources, tests, build and project files, the gate scripts): the committed SPSS fixtures and their expected renderings under tests/fixtures, which the Expecto suite opens; the prose files are not read by any test.",
   "reads": [
     "tests/fixtures/**"
